@@ -6,3 +6,6 @@ persiapan_presentasi.md
 1777259721.csv
 .claude/
 .ipynb_checkpoints/
+
+# Dependensi pembuat slide
+presentasi/node_modules/
