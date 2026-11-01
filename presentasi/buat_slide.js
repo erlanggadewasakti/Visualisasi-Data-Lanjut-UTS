@@ -1,15 +1,15 @@
-// Membuat presentasi/Selalu_Lebih_Mahal.pptx dari PNG di docs/img/slide (hasil analisis.ipynb).
+// Membuat presentasi/Kesenjangan_yang_Menetap.pptx dari PNG di docs/img/slide (hasil analisis.ipynb).
 // Jalankan dari folder presentasi:  node buat_slide.js
 const path = require("path");
 const pptxgen = require("pptxgenjs");
 
 const IMG = path.join(__dirname, "..", "docs", "img", "slide");
-const OUT = path.join(__dirname, "Selalu_Lebih_Mahal.pptx");
+const OUT = path.join(__dirname, "Kesenjangan_yang_Menetap.pptx");
 // apply_theme.js dari skill pptx; kalau tidak ada, warna tema tetap bawaan Office
 const APPLY_THEME = process.env.APPLY_THEME;
 
 const THEME = {
-  name: "Selalu Lebih Mahal",
+  name: "Kesenjangan yang Menetap",
   headFontFace: "Cambria",
   bodyFontFace: "Calibri",
   colors: {
@@ -24,7 +24,7 @@ const SUMBER = "Sumber: Badan Pangan Nasional, Rata-rata Harga Pangan Bulanan Ti
 
 const pres = new pptxgen();
 pres.layout = "LAYOUT_WIDE"; // 13,333 x 7,5 inci
-pres.title = "Selalu Lebih Mahal";
+pres.title = "Kesenjangan yang Menetap";
 pres.author = "Erlangga Dewa Sakti, Alya Nabila Muliani";
 pres.theme = { headFontFace: THEME.headFontFace, bodyFontFace: THEME.bodyFontFace };
 const C = pres.SchemeColor;
@@ -134,30 +134,30 @@ let s;
 
 pres.addSection({ title: "Pembuka" });
 s = pres.addSlide({ masterName: "SAMPUL", sectionTitle: "Pembuka" });
-teks(s, "Data story · Harga pangan pokok di 38 provinsi, 2021 sampai 2025", { x: M, y: 0.9, w: 8, h: 0.4, fontSize: 16, bold: true, color: C.accent4 });
-teks(s, "Selalu Lebih Mahal", { x: M, y: 1.45, w: 8, h: 1.1, fontFace: JUDUL, fontSize: 60, bold: true, color: C.background1 });
+teks(s, "Data story · Ketimpangan Harga Pangan di Tanah Papua, 2021 sampai 2025", { x: M, y: 0.9, w: 8, h: 0.4, fontSize: 16, bold: true, color: C.accent4 });
+teks(s, "Kesenjangan yang Menetap", { x: M, y: 1.45, w: 8.0, h: 1.75, fontFace: JUDUL, fontSize: 54, bold: true, color: C.background1 });
 teks(s, [
-  { text: "Pangan pokok di Tanah Papua konsisten " },
-  { text: "sekitar 25% lebih mahal", options: { bold: true, color: C.accent4 } },
-  { text: " dari median nasional sejak 2021, dan di pegunungan selisihnya " },
-  { text: "hampir 70%", options: { bold: true, color: C.accent4 } },
-  { text: "." },
-], { x: M, y: 2.85, w: 7.4, h: 2.0, fontSize: 26, color: C.background1, lineSpacingMultiple: 1.15 });
-teks(s, "27%", { x: 9.0, y: 1.45, w: 3.7, h: 1.0, fontFace: JUDUL, fontSize: 66, bold: true, color: C.accent4 });
-teks(s, "lebih mahal, rata-rata Papua dan Papua Barat 2021 sampai 2025", { x: 9.0, y: 2.5, w: 3.7, h: 0.75, fontSize: 15, color: C.background1 });
-teks(s, "67%", { x: 9.0, y: 3.55, w: 3.7, h: 1.0, fontFace: JUDUL, fontSize: 66, bold: true, color: C.accent4 });
-teks(s, "lebih mahal di Papua Pegunungan, provinsi termahal 2024", { x: 9.0, y: 4.6, w: 3.7, h: 0.75, fontSize: 15, color: C.background1 });
+  { text: "Pada 2024, " },
+  { text: "lima provinsi termahal seluruhnya berada di Tanah Papua", options: { bold: true, color: C.accent4 } },
+  { text: "; Papua dan Papua Barat tetap " },
+  { text: "sekitar 19–34% di atas median nasional", options: { bold: true, color: C.accent4 } },
+  { text: " setiap tahun sejak 2021." },
+], { x: M, y: 3.45, w: 7.4, h: 2.0, fontSize: 26, color: C.background1, lineSpacingMultiple: 1.15 });
+teks(s, "5 dari 5", { x: 9.0, y: 1.45, w: 3.7, h: 1.0, fontFace: JUDUL, fontSize: 66, bold: true, color: C.accent4 });
+teks(s, "provinsi termahal tahun 2024 ada di Tanah Papua", { x: 9.0, y: 2.5, w: 3.7, h: 0.75, fontSize: 15, color: C.background1 });
+teks(s, "19–34%", { x: 9.0, y: 3.55, w: 3.7, h: 1.0, fontFace: JUDUL, fontSize: 66, bold: true, color: C.accent4 });
+teks(s, "di atas median nasional, Papua dan Papua Barat setiap tahun 2021 sampai 2025", { x: 9.0, y: 4.6, w: 3.7, h: 0.75, fontSize: 15, color: C.background1 });
 teks(s, "Erlangga Dewa Sakti (203012510035) · Alya Nabila Muliani (203012510013)", { x: M, y: 6.25, w: 12, h: 0.35, fontSize: 16, bold: true, color: C.background1 });
 teks(s, "Visualisasi Data Lanjut (CAK7AGB4) · Magister Informatika, Telkom University", { x: M, y: 6.65, w: 12, h: 0.35, fontSize: 14, color: C.accent4 });
-s.addNotes("Erlangga, ±30 detik.\n- Buka dengan pesan utama, satu kalimat utuh.\n- Angka persis: 27% (rata-rata Papua dan Papua Barat, 2021 sampai 2025) dan 67% (Papua Pegunungan, 2024). Di pesan dibulatkan supaya mudah diingat.\n- Data: Badan Pangan Nasional, 38 provinsi, Januari 2021 sampai Januari 2026.");
+s.addNotes("Erlangga, ±30 detik.\n- Buka dengan pesan utama, satu kalimat utuh.\n- 5 dari 5: lima provinsi termahal 2024 semuanya di Tanah Papua.\n- 19–34%: rasio tahunan Papua dan Papua Barat 1,19 sampai 1,34× median nasional, 2021 sampai 2025. Hanya dua provinsi ini yang punya data sejak 2021.\n- Data: Badan Pangan Nasional, 38 provinsi, Januari 2021 sampai Januari 2026.");
 
 s = pres.addSlide({ masterName: "ISI", sectionTitle: "Pembuka" });
 s.addText("Mengapa audiens ini", { placeholder: "label" });
-s.addText("Direktorat Distribusi dan Cadangan Pangan, Badan Pangan Nasional", { placeholder: "title" });
+s.addText("Direktorat Stabilisasi Pasokan dan Harga Pangan, Badan Pangan Nasional", { placeholder: "title" });
 [
-  ["Keputusan mereka", "Mengalokasikan Fasilitasi Distribusi Pangan (subsidi ongkos angkut) antarprovinsi."],
+  ["Pekerjaan mereka", "Memantau dan menganalisis harga pangan untuk stabilisasi harga."],
   ["Yang sudah mereka tahu", "Harga pangan di Papua mahal."],
-  ["Yang belum mereka pegang", "Seberapa besar selisihnya, apakah mengecil, dan provinsi mana di Papua yang paling berat."],
+  ["Yang belum mereka pegang", "Seberapa besar selisihnya, apakah bertahan, dan di mana paling berat."],
 ].forEach(([h, b], i) => {
   const x = M + i * 4.13;
   kartu(s, x, 2.55, 3.83, 2.75, "FFFFFF", "DFE3DF");
@@ -166,7 +166,7 @@ s.addText("Direktorat Distribusi dan Cadangan Pangan, Badan Pangan Nasional", { 
   teks(s, b, { x: x + 0.3, y: 4.05, w: 3.25, h: 1.1, fontSize: 17 });
 });
 teks(s, "Karena itu cerita ini membandingkan provinsi dengan provinsi.", { x: M, y: 5.75, w: 12.1, h: 0.4, fontSize: 18, italic: true, color: C.accent3 });
-s.addNotes("Erlangga, ±40 detik.\n- Cerita kami membandingkan provinsi dengan provinsi. TPID satu provinsi tidak bisa memindahkan anggaran ke provinsi lain; yang memutuskan alokasi antarprovinsi adalah direktorat ini.\n- Mereka sudah tahu Papua mahal. Kami menjawab tiga hal yang belum mereka pegang: seberapa besar, apakah mengecil, siapa yang paling berat.");
+s.addNotes("Erlangga, ±40 detik.\n- Direktorat ini, di bawah Deputi Bidang Ketersediaan dan Stabilisasi Pangan, memantau dan menganalisis harga pangan di tingkat nasional. Cerita kami membandingkan provinsi dengan provinsi, jadi cocok dengan cakupan kerja mereka.\n- Mereka sudah tahu Papua mahal. Kami menjawab tiga hal yang belum mereka pegang: seberapa besar, apakah bertahan, provinsi dan komoditas mana yang paling berat.");
 
 pres.addSection({ title: "Cerita" });
 s = pres.addSlide({ masterName: "GRAFIK_KANAN", sectionTitle: "Cerita" });
@@ -174,7 +174,7 @@ s.addText("Setup · Gambar 1", { placeholder: "label" });
 s.addText("Lima teratas semuanya Papua", { placeholder: "title" });
 teks(s, "5 dari 5", { x: M, y: 1.95, w: 6.6, h: 0.95, fontFace: JUDUL, fontSize: 60, bold: true, color: C.accent2 });
 teks(s, "provinsi termahal tahun 2024 ada di Tanah Papua", { x: M, y: 2.95, w: 6.6, h: 0.4, fontSize: 16, color: C.accent3 });
-teks(s, "Harga tiap provinsi dibagi median 38 provinsi untuk komoditas dan bulan yang sama. 1,0× berarti setara provinsi yang di tengah.", { x: M, y: 3.7, w: 6.6, h: 1.0, fontSize: 18 });
+teks(s, "Harga tiap provinsi dibagi median provinsi nasional yang tersedia untuk komoditas dan bulan yang sama. 1,0× berarti setara provinsi yang di tengah.", { x: M, y: 3.7, w: 6.6, h: 1.0, fontSize: 18 });
 teks(s, [
   { text: "Papua Pegunungan " }, { text: "1,67×", options: { bold: true } },
   { text: " · Papua Tengah " }, { text: "1,48×", options: { bold: true } },
@@ -185,19 +185,19 @@ s.addNotes("Erlangga, ±55 detik.\n- Cara membaca: tiap titik satu provinsi, gar
 
 s = pres.addSlide({ masterName: "GRAFIK", sectionTitle: "Cerita" });
 s.addText("Konflik · Gambar 2", { placeholder: "label" });
-s.addText("Lima tahun tetap jauh dari 1,0×", { placeholder: "title" });
+s.addText("Lima tahun tetap di atas 1,0×", { placeholder: "title" });
 angkaKunci(s, "1,12×", "bulan termurah dalam lima tahun, April 2025");
 legenda(s, M, 1.9, [["pita", THEME.colors.accent1, "Rentang kedua garis selama lima tahun"], ["garis", THEME.colors.accent3, "Median nasional = 1,0×"]]);
 gambar(s, "fig2.png", 1.15, 2.35, 11.0, 4.4, "Garis rasio harga bulanan Papua dan Papua Barat, Januari 2021 sampai Januari 2026, selalu di atas 1,12 kali median nasional");
-s.addNotes("Erlangga, ±55 detik.\n- Kalau mahalnya sementara (cuaca, kapal telat), garis akan turun lagi ke 1,0×. Ternyata tidak.\n- Pita hijau toska: rentang kedua garis selama lima tahun. Tahunan 1,19 sampai 1,34×, rata-rata 27% lebih mahal.\n- Titik terendah pun 1,12×, April 2025.\n- Garis vertikal Januari 2024: wilayah kedua provinsi menyusut karena pemekaran, jadi sebelum dan sesudahnya bukan wilayah yang persis sama.\n- Serahkan ke Alya.");
+s.addNotes("Erlangga, ±55 detik.\n- Kalau mahalnya sementara (cuaca, kapal telat), garis akan turun lagi ke 1,0×. Ternyata tidak.\n- Pita hijau toska: rentang kedua garis selama lima tahun. Tahunan 1,19 sampai 1,34×, rata-rata 27% lebih mahal. Besarnya naik-turun, tapi kesenjangannya tidak pernah hilang.\n- Titik terendah pun 1,12×, April 2025.\n- Garis vertikal Januari 2024: wilayah kedua provinsi menyusut karena pemekaran, jadi sebelum dan sesudahnya bukan wilayah yang persis sama.\n- Serahkan ke Alya.");
 
 s = pres.addSlide({ masterName: "GRAFIK", sectionTitle: "Cerita" });
-s.addText("Resolusi · Gambar 3", { placeholder: "label" });
-s.addText("Beban terberat ada di pegunungan", { placeholder: "title" });
+s.addText("Konflik · Gambar 3", { placeholder: "label" });
+s.addText("Kesenjangan terbesar di pegunungan", { placeholder: "title" });
 angkaKunci(s, "1,67×", "Papua Pegunungan, provinsi termahal 2024");
 legenda(s, M, 1.9, [["skala", "", "1,0× sampai 2,0×: makin gelap makin mahal"], ["bingkai", THEME.colors.dk1, "Dua provinsi terberat"], ["bingkai-putus", THEME.colors.dk1, "Empat komoditas terberat"]]);
 gambar(s, "fig3.png", 1.57, 2.35, 10.2, 4.39, "Heatmap enam provinsi Papua dan dua belas komoditas, 2024: Papua Pegunungan dan Papua Tengah paling gelap, terutama cabai, bawang merah, dan minyak goreng");
-s.addNotes("Alya, ±55 detik.\n- Kalau dirinci, bebannya tidak merata.\n- Bingkai tebal: Papua Pegunungan dan Papua Tengah jauh di atas provinsi Papua lain.\n- Garis putus: empat komoditas terberat, yaitu cabai rawit, bawang merah, cabai merah, minyak goreng; 1,63 sampai 2,01×.\n- Kontras: beras di Papua Selatan hampir setara harga nasional, 1,05×.\n- Ini yang membuat usulan bisa spesifik: provinsi mana dan komoditas apa.");
+s.addNotes("Alya, ±55 detik.\n- Kalau dirinci, kesenjangannya tidak merata.\n- Bingkai tebal: Papua Pegunungan dan Papua Tengah jauh di atas provinsi Papua lain.\n- Garis putus: empat komoditas terberat, yaitu cabai rawit, bawang merah, cabai merah, minyak goreng; 1,63 sampai 2,01×.\n- Kontras: beras di Papua Selatan hampir setara harga nasional, 1,05×.\n- Ini menunjukkan di mana telaah lanjutan sebaiknya difokuskan: provinsi mana dan komoditas apa.");
 
 s = pres.addSlide({ masterName: "GRAFIK", sectionTitle: "Cerita" });
 s.addText("Resolusi · Gambar 4", { placeholder: "label" });
@@ -211,7 +211,7 @@ teks(s, [
   { text: "2%", options: { bold: true, color: C.accent2 } },
   { text: " di provinsi lain. Angka sebulat itu menandakan pengamatannya sangat sedikit." },
 ], { x: M, y: 6.15, w: 12.1, h: 0.7, fontSize: 18 });
-s.addNotes("Alya, ±45 detik.\n- Kami ingin melihat apakah 2025 membaik di Papua Pegunungan. Ternyata 62% datanya kosong, dan tidak ada data sama sekali sejak Agustus 2025.\n- Yang tercatat pun 86% kelipatan Rp500, padahal di provinsi lain hanya 2%.\n- Jadi kami tidak menafsirkan 2025 untuk Papua Pegunungan. Ini dasar usulan kedua.");
+s.addNotes("Alya, ±45 detik.\n- Kami ingin melihat apakah 2025 membaik di Papua Pegunungan. Ternyata 62% datanya kosong, dan tidak ada data sama sekali sejak Agustus 2025.\n- Yang tercatat pun 86% kelipatan Rp500, padahal di provinsi lain hanya 2%.\n- Jadi kami tidak menafsirkan 2025 untuk Papua Pegunungan. Angka paling ekstrem harus dibaca bersama kualitas datanya: cakupan pencatatan perlu dievaluasi dan diperkuat sebelum dipakai untuk keputusan operasional. Ini dasar usulan kedua.");
 
 pres.addSection({ title: "Desain" });
 s = pres.addSlide({ masterName: "ISI", sectionTitle: "Desain" });
@@ -221,8 +221,8 @@ kartu(s, M, 2.2, 5.0, 4.15, THEME.colors.dk2);
 teks(s, "Rasio", { x: M + 0.4, y: 2.5, w: 4.2, h: 0.4, fontSize: 18, bold: true, color: C.accent4 });
 teks(s, "harga provinsi", { x: M + 0.4, y: 3.15, w: 4.2, h: 0.6, fontFace: JUDUL, fontSize: 30, bold: true, color: C.background1, align: "center" });
 teks(s, "÷", { x: M + 0.4, y: 3.75, w: 4.2, h: 0.6, fontFace: JUDUL, fontSize: 30, color: C.accent4, align: "center" });
-teks(s, "median 38 provinsi", { x: M + 0.4, y: 4.35, w: 4.2, h: 0.6, fontFace: JUDUL, fontSize: 30, bold: true, color: C.background1, align: "center" });
-teks(s, "untuk komoditas dan bulan yang sama", { x: M + 0.4, y: 5.4, w: 4.2, h: 0.4, fontSize: 15, color: C.accent4, align: "center" });
+teks(s, "median provinsi", { x: M + 0.4, y: 4.35, w: 4.2, h: 0.6, fontFace: JUDUL, fontSize: 30, bold: true, color: C.background1, align: "center" });
+teks(s, "yang tersedia, untuk komoditas dan bulan yang sama", { x: M + 0.4, y: 5.4, w: 4.2, h: 0.4, fontSize: 15, color: C.accent4, align: "center" });
 [
   ["Satu sumbu untuk 12 komoditas", "Beras (±Rp13 ribu) dan daging sapi (±Rp135 ribu) terbaca di skala yang sama."],
   ["Median, bukan rata-rata", "Harga Papua tidak ikut menaikkan pembandingnya. Dengan rata-rata, Papua Pegunungan hanya terbaca 1,58×."],
@@ -233,7 +233,7 @@ teks(s, "untuk komoditas dan bulan yang sama", { x: M + 0.4, y: 5.4, w: 4.2, h: 
   teks(s, h, { x: 6.9, y: y - 0.02, w: 5.8, h: 0.4, fontSize: 19, bold: true, color: C.accent2 });
   teks(s, b, { x: 6.9, y: y + 0.42, w: 5.8, h: 0.85, fontSize: 16 });
 });
-s.addNotes("Alya, ±55 detik.\n- Keputusan paling menentukan: semua angka dijadikan rasio terhadap median 38 provinsi.\n- (1) dua belas komoditas dengan harga berbeda sepuluh kali lipat bisa dibaca di satu sumbu.\n- (2) median, supaya provinsi Papua yang ekstrem tidak menaikkan pembandingnya sendiri.\n- (3) yang dibaca jarak dari 1,0×, jadi dot plot lebih tepat daripada peta. Peta dibuang: Papua yang luas mendominasi, DKI dan DIY nyaris tak terlihat, Papua Barat 1,29× dan Papua 1,25× tampak sama warnanya.");
+s.addNotes("Alya, ±55 detik.\n- Keputusan paling menentukan: semua angka dijadikan rasio terhadap median provinsi nasional yang tersedia (38 provinsi sejak 2024).\n- (1) dua belas komoditas dengan harga berbeda sepuluh kali lipat bisa dibaca di satu sumbu.\n- (2) median, supaya provinsi Papua yang ekstrem tidak menaikkan pembandingnya sendiri.\n- (3) yang dibaca jarak dari 1,0×, jadi dot plot lebih tepat daripada peta. Peta dibuang: Papua yang luas mendominasi, DKI dan DIY nyaris tak terlihat, Papua Barat 1,29× dan Papua 1,25× tampak sama warnanya.");
 
 s = pres.addSlide({ masterName: "ISI", sectionTitle: "Desain" });
 s.addText("Satu hal yang berubah selama pengerjaan", { placeholder: "label" });
@@ -252,20 +252,20 @@ s.addNotes("Erlangga, ±40 detik.\n- Awalnya kami ingin fokus ke Papua Pegununga
 pres.addSection({ title: "Usulan" });
 s = pres.addSlide({ masterName: "PENUTUP", sectionTitle: "Usulan" });
 s.addText("Yang kami usulkan", { placeholder: "label" });
-s.addText("Dua usulan untuk Fasilitasi Distribusi Pangan", { placeholder: "title" });
+s.addText("Dua usulan untuk pemantauan dan evaluasi", { placeholder: "title" });
 [
-  [{ text: "Prioritaskan Papua Pegunungan dan Papua Tengah", options: { bold: true } },
-   { text: ", khususnya cabai rawit, bawang merah, cabai merah, dan minyak goreng, sebagai program rutin sepanjang tahun." }],
-  [{ text: "Tambah titik pantau harga di Papua Pegunungan", options: { bold: true } },
-   { text: ", agar dampak program apa pun di provinsi termahal bisa diukur." }],
+  [{ text: "Jadikan Papua Pegunungan dan Papua Tengah prioritas telaah lebih lanjut", options: { bold: true } },
+   { text: ", khususnya bawang, cabai, dan minyak goreng, dalam pemantauan dan evaluasi program stabilisasi harga." }],
+  [{ text: "Evaluasi dan perkuat cakupan pencatatan harga di Papua Pegunungan", options: { bold: true } },
+   { text: ": 62% data 2025 kosong, jadi kualitas datanya perlu diperbaiki sebelum dipakai untuk keputusan operasional." }],
 ].forEach((isi, i) => {
   const y = 2.3 + i * 1.65;
   teks(s, String(i + 1), { x: M, y, w: 0.8, h: 1.0, fontFace: JUDUL, fontSize: 60, bold: true, color: C.accent4 });
   teks(s, isi, { x: 1.6, y: y + 0.1, w: 11.1, h: 1.3, fontSize: 24, color: C.background1 });
 });
-teks(s, "Pangan pokok di Tanah Papua konsisten sekitar 25% lebih mahal dari median nasional sejak 2021, dan di pegunungan selisihnya hampir 70%.",
+teks(s, "Pada 2024, lima provinsi termahal seluruhnya berada di Tanah Papua; Papua dan Papua Barat tetap sekitar 19–34% di atas median nasional setiap tahun sejak 2021.",
   { x: M, y: 5.95, w: 12.1, h: 0.75, fontSize: 17, italic: true, color: C.accent4 });
-s.addNotes("Alya, ±35 detik, lalu tanya jawab.\n- Usulan 1: selisihnya menetap lima tahun, jadi Papua Pegunungan dan Papua Tengah butuh fasilitasi yang rutin, bukan operasi pasar sesekali. Fokus ke empat komoditas terberat.\n- Usulan 2: tanpa data, program apa pun di provinsi termahal tidak bisa dievaluasi.\n- Tutup dengan membaca ulang pesan utama di bawah, lalu: \"Terima kasih, kami siap menjawab pertanyaan.\"");
+s.addNotes("Alya, ±35 detik, lalu tanya jawab.\n- Usulan 1: Papua Pegunungan dan Papua Tengah paling tinggi, terutama empat komoditas terberat, jadi layak jadi prioritas telaah. Data harga saja belum cukup untuk menentukan bentuk intervensinya.\n- Usulan 2: 62% data Papua Pegunungan 2025 kosong. Cakupan pencatatan perlu dievaluasi dan diperkuat sebelum datanya dipakai untuk keputusan operasional yang lebih spesifik.\n- Tutup dengan membaca ulang pesan utama di bawah, lalu: \"Terima kasih, kami siap menjawab pertanyaan.\"");
 
 pres.addSection({ title: "Cadangan" });
 s = pres.addSlide({ masterName: "CADANGAN", sectionTitle: "Cadangan" });

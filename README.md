@@ -1,19 +1,20 @@
-# Selalu Lebih Mahal: Harga Pangan Pokok di Tanah Papua, 2021–2025
+# Kesenjangan yang Menetap: Ketimpangan Harga Pangan di Tanah Papua, 2021–2025
 
 Midterm Project Visualisasi Data Lanjut (CAK7AGB4), Magister Informatika, Telkom University.
 Erlangga Dewa Sakti (203012510035) · Alya Nabila Muliani (203012510013)
 
-> Pangan pokok di Tanah Papua konsisten sekitar 25% lebih mahal dari median nasional sejak 2021, dan di pegunungan selisihnya hampir 70%.
+> Pada 2024, lima provinsi dengan indeks harga relatif 12 komoditas tertinggi seluruhnya berada di Tanah Papua; sementara Papua dan Papua Barat yang memiliki seri sejak 2021 tetap berada sekitar 19–34% di atas median provinsi nasional setiap tahunnya.
 
 - **Data story:** `docs/index.html` (GitHub Pages: `https://<username>.github.io/<repo>/`)
-- **Message Brief & Storyboard:** `brief/Brief_dan_Storyboard.pdf`
+- **Message Brief & Storyboard:** `brief/Brief_dan_Storyboard_203012510013_203012510035.pdf`
+- **Slide presentasi:** `presentasi/Kesenjangan_yang_Menetap.pptx`
 - **Notebook:** `analisis.ipynb` menghasilkan seluruh angka dan gambar
 
 ## Data
 
 Badan Pangan Nasional, *Rata-rata Harga Pangan Bulanan Tingkat Konsumen Provinsi*,
 https://data.badanpangan.go.id/datasetpublications/5up/rata-rata-harga-pangan-bulanan-konsumen-provinsi,
-diunduh 31 Oktober 2026. Salinannya: `data/harga_pangan_konsumen_provinsi.csv`.
+diunduh 26 Oktober 2026. Salinannya: `data/harga_pangan_konsumen_provinsi.csv`.
 Batas provinsi untuk peta (gambar yang dibuang): `data/geo/38_provinsi.json`, dari
 [ardian28/GeoJson-Indonesia-38-Provinsi](https://github.com/ardian28/GeoJson-Indonesia-38-Provinsi).
 

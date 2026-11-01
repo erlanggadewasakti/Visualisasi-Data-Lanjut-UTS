@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Selalu Lebih Mahal</title>
-<meta name="description" content="Data story: harga pangan pokok di Tanah Papua dibandingkan median nasional, 2021 sampai 2025.">
+<title>Kesenjangan yang Menetap</title>
+<meta name="description" content="Data story: ketimpangan harga pangan di Tanah Papua dibandingkan median nasional, 2021 sampai 2025.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap">
@@ -131,21 +131,21 @@
 <body>
 <div class="halaman">
   <header class="kepala">
-    <p class="kicker">Data story · Harga pangan pokok di 38 provinsi, 2021 sampai 2025</p>
-    <h1>Selalu Lebih Mahal</h1>
-    <p class="pesan">Pangan pokok di Tanah Papua konsisten <strong>sekitar 25% lebih mahal</strong> dari median nasional sejak 2021, dan di pegunungan selisihnya <strong>hampir 70%</strong>.</p>
-    <p class="meta">Ditulis untuk Direktorat Distribusi dan Cadangan Pangan, Badan Pangan Nasional, sebagai bahan penentuan alokasi Fasilitasi Distribusi Pangan.<br>Erlangga Dewa Sakti (203012510035) · Alya Nabila Muliani (203012510013)</p>
+    <p class="kicker">Data story · Ketimpangan Harga Pangan di Tanah Papua, 2021 sampai 2025</p>
+    <h1>Kesenjangan yang Menetap</h1>
+    <p class="pesan">Pada 2024, <strong>lima provinsi termahal seluruhnya berada di Tanah Papua</strong>; Papua dan Papua Barat, yang tercatat sejak 2021, tetap <strong>sekitar {{tahunan_min_persen}} sampai {{tahunan_max_persen}}% di atas median nasional</strong> setiap tahunnya.</p>
+    <p class="meta">Ditulis untuk Direktorat Stabilisasi Pasokan dan Harga Pangan, Deputi Bidang Ketersediaan dan Stabilisasi Pangan, Badan Pangan Nasional, sebagai bahan pemantauan dan evaluasi program stabilisasi harga.<br>Erlangga Dewa Sakti (203012510035) · Alya Nabila Muliani (203012510013)</p>
   </header>
 
   <section class="bab" aria-label="Cara membaca angka">
     <div class="rel">
       <p class="label">Cara membaca</p>
       <p class="angka">1,0×</p>
-      <p class="ket">harga provinsi yang berada di tengah dari 38 provinsi</p>
+      <p class="ket">harga provinsi yang berada di tengah dari provinsi yang tercatat</p>
     </div>
     <div class="teks">
-      <p>Badan Pangan Nasional mencatat harga konsumen <strong>27 komoditas di 38 provinsi</strong> setiap bulan. Harga pangan di Papua sudah lama dikenal mahal, tetapi jarang dihitung <strong>seberapa besar selisihnya</strong>, <strong>apakah selisih itu mengecil</strong>, dan <strong>provinsi mana di Tanah Papua yang paling menanggungnya</strong>.</p>
-      <p>Harga setiap provinsi kami bandingkan dengan <strong>median 38 provinsi</strong> untuk komoditas dan bulan yang sama. <strong>Angka 1,0× berarti setara provinsi yang di tengah</strong>, dan 1,5× berarti 50% lebih mahal. Dengan rasio ini, beras dan daging sapi yang harganya berbeda sepuluh kali lipat bisa dibaca di <strong>satu sumbu</strong>. Kami memakai <strong>12 komoditas pokok</strong> yang tercatat setiap bulan selama lima tahun.</p>
+      <p>Badan Pangan Nasional mencatat harga konsumen <strong>27 komoditas di 38 provinsi</strong> setiap bulan. Harga pangan di Papua sudah lama dikenal mahal, tetapi jarang dihitung <strong>seberapa besar selisihnya</strong>, <strong>apakah selisih itu bertahan</strong>, dan <strong>provinsi mana di Tanah Papua yang paling menanggungnya</strong>.</p>
+      <p>Harga setiap provinsi kami bandingkan dengan <strong>median provinsi nasional yang tersedia</strong> untuk komoditas dan bulan yang sama: 38 provinsi sejak 2024, lebih sedikit sebelumnya karena provinsi hasil pemekaran baru tercatat terpisah. <strong>Angka 1,0× berarti setara provinsi yang di tengah</strong>, dan 1,5× berarti 50% lebih mahal. Dengan rasio ini, beras dan daging sapi yang harganya berbeda sepuluh kali lipat bisa dibaca di <strong>satu sumbu</strong>. Kami memakai <strong>12 komoditas pangan</strong> yang tercatat setiap bulan selama lima tahun.</p>
     </div>
   </section>
 
@@ -157,12 +157,12 @@
     </div>
     <div class="teks">
       <h2>Papua di puncak daftar provinsi termahal</h2>
-      <p>Pada 2024, tahun lengkap pertama setelah pemekaran, <strong>lima provinsi dengan harga pangan pokok tertinggi semuanya berada di Tanah Papua</strong>: {{top5}}. Provinsi keenam, Papua Selatan, ada di urutan ke-{{peringkat_ps}} ({{ps}}×).</p>
+      <p>Pada 2024, tahun lengkap pertama setelah pemekaran, <strong>lima provinsi dengan harga pangan tertinggi semuanya berada di Tanah Papua</strong>: {{top5}}. Provinsi keenam, Papua Selatan, ada di urutan ke-{{peringkat_ps}} ({{ps}}×).</p>
     </div>
     <figure>
       {{fig1}}
       <img class="cadangan" src="img/fig1.png" alt="Dot plot 38 provinsi tahun 2024. Lima titik paling kanan, semuanya provinsi di Tanah Papua, berada antara 1,25 dan 1,67 kali median nasional." loading="lazy">
-      <figcaption><b>Gambar 1.</b> Tiap titik adalah satu provinsi. Arahkan kursor ke titik abu-abu untuk melihat nilai provinsi lain.</figcaption>
+      <figcaption><b>Gambar 1.</b> Tiap titik adalah satu provinsi. Label nilai hanya diberikan pada enam provinsi di Tanah Papua.</figcaption>
     </figure>
   </section>
 
@@ -173,9 +173,9 @@
       <p class="ket">bulan termurah Papua dan Papua Barat dalam lima tahun ({{tgl_terendah}})</p>
     </div>
     <div class="teks">
-      <h2>Selisihnya bertahan lima tahun</h2>
+      <h2>Kesenjangannya bertahan lima tahun</h2>
       <p>Kalau mahalnya hanya sementara, misalnya karena gagal panen atau jalur kapal terganggu, rasio harga akan <strong>naik lalu turun lagi mendekati 1,0×</strong>. Papua dan Papua Barat, dua provinsi yang tercatat sejak 2021, <strong>tidak pernah turun ke sana</strong>. Setiap tahun rasionya <strong>{{tahunan_min}} sampai {{tahunan_max}}×</strong> median nasional, rata-rata <strong>{{rata_papua}}% lebih mahal</strong>, dan bulan termurahnya pun masih <strong>{{terendah}}×</strong> ({{tgl_terendah}}).</p>
-      <p>Selisih yang bertahan selama ini kecil kemungkinannya tertutup oleh <strong>operasi pasar sesekali</strong>, jadi <strong>penanganannya juga perlu rutin</strong>.</p>
+      <p>Besarnya memang <strong>naik-turun dari tahun ke tahun</strong>, tetapi kesenjangannya <strong>tidak pernah hilang</strong>. Perbandingan sebelum dan sesudah 2024 perlu dibaca hati-hati karena <strong>wilayah kedua provinsi menyusut setelah pemekaran</strong>.</p>
     </div>
     <figure>
       {{fig2}}
@@ -186,12 +186,12 @@
 
   <section class="bab">
     <div class="rel">
-      <p class="label">Resolusi</p>
+      <p class="label">Konflik</p>
       <p class="angka">{{pp}}×</p>
       <p class="ket">Papua Pegunungan, provinsi termahal tahun 2024</p>
     </div>
     <div class="teks">
-      <h2>Di dalam Tanah Papua, bebannya tidak merata</h2>
+      <h2>Di dalam Tanah Papua, kesenjangannya tidak merata</h2>
       <p><strong>Papua Pegunungan</strong> ({{pp}}×, atau {{pp_persen}}% di atas median) dan <strong>Papua Tengah</strong> ({{pt}}×) berada <strong>jauh di atas provinsi Papua lainnya</strong>. Selisih terbesar ada pada <strong>{{berat}}</strong>, yang di kedua provinsi itu {{berat_min}} sampai {{berat_max}}× harga nasional. <strong>Beras di Papua Selatan</strong>, sebaliknya, <strong>hampir setara harga nasional</strong> ({{beras_selatan}}×).</p>
     </div>
     <figure class="geser">
@@ -204,13 +204,14 @@
 
   <section class="bab">
     <div class="rel">
-      <p class="label">Catatan data</p>
+      <p class="label">Resolusi</p>
       <p class="angka">{{kosong_pp25}}%</p>
       <p class="ket">data Papua Pegunungan tahun 2025 yang kosong</p>
     </div>
     <div class="teks">
-      <h2>Data Papua Pegunungan berhenti pada {{bulan_terakhir_pp}}</h2>
+      <h2>Angka paling ekstrem perlu dibaca bersama kualitas datanya</h2>
       <p>Kami ingin memakai data 2025 untuk melihat apakah keadaan di Papua Pegunungan membaik. Ternyata <strong>{{kosong_pp25}}% data provinsi itu untuk 2025 kosong</strong>, dan <strong>setelah {{bulan_terakhir_pp}} tidak ada catatan sama sekali</strong>. Dari harga yang tercatat, <strong>{{bulat_pp25}}% berupa kelipatan Rp500</strong>, sedangkan di provinsi lain hanya {{bulat_lain25}}%. Angka sebulat itu menandakan <strong>pengamatannya sangat sedikit</strong>. Karena itu kami <strong>memakai 2024 sebagai tahun pembanding</strong> dan tidak menafsirkan data 2025 Papua Pegunungan.</p>
+      <p>Provinsi dengan rasio tertinggi justru provinsi yang <strong>cakupan pencatatannya paling rendah</strong>. Sebelum angkanya dipakai untuk <strong>keputusan operasional yang lebih spesifik</strong>, cakupan pencatatan di sana perlu dievaluasi dan diperkuat.</p>
     </div>
     <figure class="geser">
       {{fig4}}
@@ -228,8 +229,8 @@
       <div class="teks">
         <h2>Yang kami usulkan</h2>
         <ol>
-          <li><span><strong>Prioritaskan alokasi Fasilitasi Distribusi Pangan ke Papua Pegunungan dan Papua Tengah</strong>, khususnya untuk {{berat}}. Karena selisihnya sudah bertahan lima tahun, program ini sebaiknya <strong>berjalan rutin sepanjang tahun</strong>.</span></li>
-          <li><span><strong>Tambah titik pantau harga di Papua Pegunungan.</strong> Selama datanya bolong, <strong>dampak program apa pun di provinsi termahal tidak bisa diukur</strong>.</span></li>
+          <li><span><strong>Jadikan Papua Pegunungan dan Papua Tengah prioritas telaah lebih lanjut</strong>, khususnya untuk {{berat}}, dalam <strong>pemantauan dan evaluasi program stabilisasi harga</strong>. Data harga saja belum cukup untuk menentukan bentuk intervensinya.</span></li>
+          <li><span><strong>Evaluasi dan perkuat cakupan pencatatan harga di Papua Pegunungan.</strong> {{kosong_pp25}}% data 2025 kosong, sehingga <strong>kualitas datanya perlu diperbaiki</strong> sebelum dipakai untuk keputusan operasional yang lebih spesifik.</span></li>
         </ol>
       </div>
     </div>
@@ -248,7 +249,7 @@
         <li>Sebelum 2024, "Papua" dan "Papua Barat" masih mencakup wilayah yang kini menjadi Papua Tengah, Papua Pegunungan, Papua Selatan, dan Papua Barat Daya. Akibatnya, garis di Gambar 2 sebelum dan sesudah Januari 2024 <strong>tidak mencakup wilayah yang persis sama</strong>.</li>
         <li><strong>Kode provinsi untuk Papua dan Papua Barat tertukar</strong> antarperiode di berkas sumber. Kami menggabungkan data berdasarkan nama provinsi.</li>
         <li>Kami hanya memakai <strong>12 dari 27 komoditas</strong> karena sisanya tidak tercatat lengkap selama lima tahun.</li>
-        <li>Median nasional adalah median 38 provinsi <strong>tanpa pembobotan jumlah penduduk</strong>.</li>
+        <li>Median nasional adalah median provinsi yang tersedia pada bulan itu, <strong>tanpa pembobotan jumlah penduduk</strong>.</li>
         <li>Data Papua Pegunungan 2025 <strong>tidak lengkap</strong> dan tampak berasal dari sedikit pengamatan (lihat Gambar 4).</li>
       </ul>
     </div>
