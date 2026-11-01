@@ -1,0 +1,8 @@
+pandas>=2.2
+plotly>=6
+kaleido>=1
+nbformat
+nbconvert
+ipykernel
+matplotlib
+python-docx
