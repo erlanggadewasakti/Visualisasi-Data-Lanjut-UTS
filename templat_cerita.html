@@ -4,126 +4,255 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Selalu Lebih Mahal</title>
-<meta name="description" content="Data story: harga pangan pokok di Tanah Papua dibandingkan median nasional, 2021–2025.">
-<script src="https://cdn.plot.ly/plotly-{{plotlyjs_versi}}.min.js"></script>
+<meta name="description" content="Data story: harga pangan pokok di Tanah Papua dibandingkan median nasional, 2021 sampai 2025.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap">
+<!-- Kalau Plotly gagal dimuat, halaman menampilkan PNG yang sama (lihat .cadangan) -->
+<script src="https://cdn.plot.ly/plotly-{{plotlyjs_versi}}.min.js" onerror="document.documentElement.classList.add('tanpa-plotly')"></script>
 <style>
+  /* Dua suara: serif untuk narasi, sans (Public Sans, huruf untuk informasi pemerintah) untuk grafik dan angka.
+     Tema terang tetap: grafik dan PNG slide berlatar terang, dan laporan ini dibaca seperti dokumen kebijakan. */
   :root {
     color-scheme: light;
-    --bg: #ffffff;
-    --ink: #0b0b0b;
-    --ink-2: #52514e;
-    --line: #e8e7e3;
-    --accent: #a8431c;
-    --accent-soft: #fdf1ea;
+    --kertas: #f8f9f7;
+    --tinta: #1a1d1c;
+    --tinta-2: #525a57;
+    --garis: #dfe3df;
+    --aksen: #0d5c54;
+    --aksen-lembut: #e1f0ec;
+    --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+    --sans: "Public Sans", "Segoe UI", Roboto, Arial, sans-serif;
+    --rel: 240px;
+    --sela: 56px;
   }
   * { box-sizing: border-box; }
-  body {
-    margin: 0; background: var(--bg); color: var(--ink);
-    font: 18px/1.65 Inter, -apple-system, "Segoe UI", Roboto, sans-serif;
-  }
-  main { max-width: 760px; margin: 0 auto; padding: 48px 16px 80px; }
-  .kicker { font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-2); margin: 0 0 8px; }
-  h1 { font-size: clamp(30px, 6vw, 44px); line-height: 1.1; margin: 0 0 20px; }
-  .pesan {
-    font-size: clamp(20px, 3.6vw, 25px); line-height: 1.4; font-weight: 600;
-    border-left: 4px solid var(--accent); padding: 4px 0 4px 18px; margin: 0 0 20px;
-  }
-  .meta { font-size: 15px; color: var(--ink-2); margin: 0 0 40px; }
-  h2 { font-size: 27px; line-height: 1.25; margin: 56px 0 12px; }
-  h3 { font-size: 18px; margin: 32px 0 8px; }
-  p { margin: 0 0 16px; }
-  .bagian { font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); margin: 56px 0 0; font-weight: 600; }
-  .bagian + h2 { margin-top: 4px; }
-  /* Gambar lebih lebar dari kolom teks (sampai 1040px), tetap muat di layar sempit */
-  figure, .dibuang { --lebar: min(1040px, calc(100vw - 32px)); width: var(--lebar); margin: 28px 0 36px calc((100% - var(--lebar)) / 2); overflow-x: auto; }
-  .geser .plotly-graph-div { min-width: var(--min, 820px); }  /* heatmap tetap terbaca di ponsel; digeser ke samping */
-  figure .plotly-graph-div { width: 100% !important; }
-  .fig-judul { font-weight: 700; font-size: 21px; line-height: 1.3; color: var(--ink); margin: 0 0 4px; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--kertas); color: var(--tinta); font: 19px/1.65 var(--serif); }
+  .halaman { max-width: 1040px; margin: 0 auto; padding: 64px 24px 96px; }
+
+  /* Satu grid untuk seluruh halaman: kolom kiri untuk label bagian, kolom kanan untuk teks, gambar memakai keduanya */
+  .bab { display: grid; grid-template-columns: var(--rel) minmax(0, 1fr); column-gap: var(--sela); margin-top: 88px; }
+  .bab > .teks { grid-column: 2; max-width: 700px; }
+  .bab > figure, .bab > .lebar { grid-column: 1 / -1; }
+
+  .kepala { margin-bottom: 8px; }
+  .kicker { font: 600 15px/1.4 var(--sans); color: var(--tinta-2); margin: 0 0 18px; }
+  h1 { font: 700 clamp(44px, 7.4vw, 76px)/1.02 var(--serif); letter-spacing: -0.015em; margin: 0 0 28px; }
+  .pesan { font: 400 clamp(23px, 3.1vw, 31px)/1.35 var(--serif); max-width: 860px; margin: 0 0 28px; }
+  .pesan strong { font-weight: 700; color: var(--aksen); }
+  .meta { font: 15px/1.55 var(--sans); color: var(--tinta-2); margin: 0; padding-top: 16px; border-top: 1px solid var(--garis); max-width: 860px; }
+
+  /* Kolom kiri: nama tahap cerita dan satu angka kunci. Angka rasio "×" adalah motif yang berulang di setiap bagian. */
+  .rel { grid-column: 1; font-family: var(--sans); padding-top: 6px; }
+  .label { font: 700 20px/1.3 var(--sans); color: var(--aksen); margin: 0 0 10px; }
+  .angka { font: 700 54px/1 var(--serif); color: var(--aksen); margin: 0 0 8px; font-variant-numeric: lining-nums; }
+  .ket { font: 15px/1.45 var(--sans); color: var(--tinta-2); margin: 0; }
+
+  h2 { font: 700 32px/1.2 var(--serif); letter-spacing: -0.005em; margin: 0 0 16px; }
+  p { margin: 0 0 18px; }
+  .teks > :last-child { margin-bottom: 0; }
+
+  figure { margin: 44px 0 0; min-width: 0; }
+  .fig-judul { font: 700 21px/1.3 var(--sans); color: var(--tinta); margin: 0 0 6px; max-width: 820px; }
   .fig-judul b { font-weight: inherit; }
-  .fig-sub { font-size: 16px; line-height: 1.4; color: var(--ink-2); margin: 0 0 4px; }
-  figcaption { font-size: 15px; max-width: 728px; color: var(--ink-2); border-top: 1px solid var(--line); padding-top: 8px; }
-  .rekomendasi { background: var(--accent-soft); border-radius: 8px; padding: 20px 24px; margin: 24px 0; }
-  .rekomendasi ol { margin: 0; padding-left: 20px; }
-  .rekomendasi li { margin-bottom: 10px; }
-  .kecil { font-size: 16px; }
-  .kecil li { margin-bottom: 6px; }
-  .dibuang p { max-width: 728px; }  /* baris teks tidak terlalu panjang di kotak lebar */
-  .dibuang { border: 1px dashed var(--ink-2); border-radius: 8px; padding: 16px 20px; margin-top: 16px; }
-  a { color: var(--accent); overflow-wrap: anywhere; }
-  footer { font-size: 15px; color: var(--ink-2); border-top: 1px solid var(--line); margin-top: 56px; padding-top: 16px; }
-  @media print { .plotly-graph-div { break-inside: avoid; } main { padding-top: 0; } }
+  .fig-sub { font: 15.5px/1.45 var(--sans); color: var(--tinta-2); margin: 0 0 10px; max-width: 820px; }
+  .bingkai { overflow-x: auto; }
+  .bingkai .plotly-graph-div { width: 100% !important; }
+  .geser .plotly-graph-div { min-width: var(--min, 820px); }
+  .petunjuk { display: none; font: 14px/1.4 var(--sans); color: var(--tinta-2); margin: 0 0 6px; }
+  figcaption { font: 15px/1.55 var(--sans); color: var(--tinta-2); border-top: 1px solid var(--garis); padding-top: 10px; margin-top: 6px; max-width: 760px; }
+  figcaption b { color: var(--tinta); }
+  .cadangan { display: none; width: 100%; height: auto; }
+  .tanpa-plotly .cadangan { display: block; }
+  .tanpa-plotly .fig-judul, .tanpa-plotly .fig-sub, .tanpa-plotly .petunjuk { display: none; }
+
+  /* Usulan adalah keputusan yang diminta halaman ini, jadi hanya blok ini yang diberi latar */
+  .usulan { background: var(--aksen-lembut); padding: 48px 0; margin-top: 88px; }
+  .usulan .bab { margin-top: 0; }
+  .isi-usulan { padding-top: 0; padding-bottom: 0; }
+  .ekor { padding-top: 0; }
+  .usulan ol { list-style: none; margin: 0; padding: 0; counter-reset: u; }
+  .usulan li { counter-increment: u; display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 4px; margin-bottom: 20px; }
+  .usulan li:last-child { margin-bottom: 0; }
+  .usulan li::before { content: counter(u); font: 700 34px/1 var(--serif); color: var(--aksen); padding-top: 2px; }
+
+  .catatan { font: 16px/1.6 var(--sans); }
+  .catatan ul { margin: 0; padding-left: 20px; }
+  .catatan li { margin-bottom: 8px; }
+  .catatan h2 { font-size: 26px; }
+  .dibuang { border: 1.5px dashed #9aa39f; border-radius: 6px; padding: 20px; margin-top: 36px; }
+  .dibuang .fig-judul { color: var(--tinta-2); }
+
+  a { color: var(--aksen); text-underline-offset: 2px; overflow-wrap: anywhere; }
+  a:focus-visible { outline: 2px solid var(--aksen); outline-offset: 2px; border-radius: 2px; }
+  code { font-size: .92em; }
+  footer { font: 15px/1.5 var(--sans); color: var(--tinta-2); border-top: 1px solid var(--garis); margin-top: 72px; padding-top: 18px; }
+
+  @media (max-width: 900px) {
+    :root { --sela: 0px; }
+    body { font-size: 18px; }
+    .halaman { padding: 40px 18px 72px; }
+    .bab { display: block; margin-top: 64px; }
+    .rel { display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: 14px; align-items: end; margin-bottom: 18px; padding-top: 0; }
+    .label { grid-column: 1 / -1; margin-bottom: 6px; }
+    .angka { font-size: 42px; margin: 0; }
+    .ket { font-size: 14px; }
+    h2 { font-size: 26px; }
+    figure { margin-top: 32px; }
+    .fig-judul { font-size: 19px; }
+    .petunjuk { display: block; }
+    .usulan { padding: 36px 0; margin-top: 64px; }
+    .usulan li { grid-template-columns: 34px minmax(0, 1fr); }
+    .usulan li::before { font-size: 28px; }
+    .dibuang { padding: 14px; }
+  }
+  @media print {
+    body { background: #fff; }
+    .bingkai .plotly-graph-div, figure { break-inside: avoid; }
+    .usulan { background: none; border-top: 2px solid var(--aksen); }
+  }
 </style>
 </head>
 <body>
-<main>
-  <p class="kicker">Data story · Harga pangan pokok 2021–2025</p>
-  <h1>Selalu Lebih Mahal</h1>
-  <p class="pesan">Pangan pokok di Tanah Papua konsisten sekitar 25% lebih mahal dari median nasional sejak 2021, dan di pegunungan selisihnya hampir 70%.</p>
-  <p class="meta">Ditulis untuk Direktorat Distribusi dan Cadangan Pangan, Badan Pangan Nasional, sebagai bahan penentuan alokasi Fasilitasi Distribusi Pangan.<br>[Nama Anggota 1] · [Nama Anggota 2]</p>
+<div class="halaman">
+  <header class="kepala">
+    <p class="kicker">Data story · Harga pangan pokok di 38 provinsi, 2021 sampai 2025</p>
+    <h1>Selalu Lebih Mahal</h1>
+    <p class="pesan">Pangan pokok di Tanah Papua konsisten <strong>sekitar 25% lebih mahal</strong> dari median nasional sejak 2021, dan di pegunungan selisihnya <strong>hampir 70%</strong>.</p>
+    <p class="meta">Ditulis untuk Direktorat Distribusi dan Cadangan Pangan, Badan Pangan Nasional, sebagai bahan penentuan alokasi Fasilitasi Distribusi Pangan.<br>Erlangga Dewa Sakti (203012510035) · Alya Nabila Muliani (203012510013)</p>
+  </header>
 
-  <p>Badan Pangan Nasional mencatat harga konsumen 27 komoditas di 38 provinsi setiap bulan. Harga pangan di Papua sudah lama dikenal mahal, tetapi jarang dihitung seberapa besar selisihnya, apakah selisih itu mengecil, dan provinsi mana di Tanah Papua yang paling menanggungnya.</p>
-  <p>Harga setiap provinsi kami bandingkan dengan median 38 provinsi untuk komoditas dan bulan yang sama. Angka 1,0× berarti setara provinsi tipikal, dan 1,5× berarti 50% lebih mahal. Dengan rasio ini, beras dan daging sapi yang harganya berbeda sepuluh kali lipat bisa dibaca di satu sumbu. Kami memakai 12 komoditas pokok yang tercatat setiap bulan selama lima tahun.</p>
+  <section class="bab" aria-label="Cara membaca angka">
+    <div class="rel">
+      <p class="label">Cara membaca</p>
+      <p class="angka">1,0×</p>
+      <p class="ket">harga provinsi yang berada di tengah dari 38 provinsi</p>
+    </div>
+    <div class="teks">
+      <p>Badan Pangan Nasional mencatat harga konsumen 27 komoditas di 38 provinsi setiap bulan. Harga pangan di Papua sudah lama dikenal mahal, tetapi jarang dihitung seberapa besar selisihnya, apakah selisih itu mengecil, dan provinsi mana di Tanah Papua yang paling menanggungnya.</p>
+      <p>Harga setiap provinsi kami bandingkan dengan median 38 provinsi untuk komoditas dan bulan yang sama. Angka 1,0× berarti setara provinsi yang di tengah, dan 1,5× berarti 50% lebih mahal. Dengan rasio ini, beras dan daging sapi yang harganya berbeda sepuluh kali lipat bisa dibaca di satu sumbu. Kami memakai 12 komoditas pokok yang tercatat setiap bulan selama lima tahun.</p>
+    </div>
+  </section>
 
-  <p class="bagian">Setup</p>
-  <h2>Papua di puncak daftar provinsi termahal</h2>
-  <p>Pada 2024, tahun lengkap pertama setelah pemekaran, lima provinsi dengan harga pangan pokok tertinggi semuanya berada di Tanah Papua: {{top5}}. Provinsi keenam, Papua Selatan, ada di urutan ke-{{peringkat_ps}} ({{ps}}×).</p>
-  <figure>
-    {{fig1}}
-    <figcaption><b>Gambar 1.</b> Tiap titik adalah satu provinsi. Titik oranye: enam provinsi di Tanah Papua. Arahkan kursor ke titik abu-abu untuk melihat nilai provinsi lain.</figcaption>
-  </figure>
+  <section class="bab">
+    <div class="rel">
+      <p class="label">Setup</p>
+      <p class="angka">5 dari 5</p>
+      <p class="ket">provinsi termahal tahun 2024 ada di Tanah Papua</p>
+    </div>
+    <div class="teks">
+      <h2>Papua di puncak daftar provinsi termahal</h2>
+      <p>Pada 2024, tahun lengkap pertama setelah pemekaran, lima provinsi dengan harga pangan pokok tertinggi semuanya berada di Tanah Papua: {{top5}}. Provinsi keenam, Papua Selatan, ada di urutan ke-{{peringkat_ps}} ({{ps}}×).</p>
+    </div>
+    <figure>
+      <div class="bingkai">{{fig1}}</div>
+      <img class="cadangan" src="img/fig1.png" alt="Dot plot 38 provinsi tahun 2024. Lima titik paling kanan, semuanya provinsi di Tanah Papua, berada antara 1,25 dan 1,67 kali median nasional." loading="lazy">
+      <figcaption><b>Gambar 1.</b> Tiap titik adalah satu provinsi. Titik hijau toska: enam provinsi di Tanah Papua. Arahkan kursor ke titik abu-abu untuk melihat nilai provinsi lain.</figcaption>
+    </figure>
+  </section>
 
-  <p class="bagian">Konflik</p>
-  <h2>Selisihnya bertahan lima tahun</h2>
-  <p>Kalau mahalnya hanya sementara, misalnya karena gagal panen atau jalur kapal terganggu, rasio harga akan naik lalu turun lagi mendekati 1,0×. Papua dan Papua Barat, dua provinsi yang tercatat sejak 2021, tidak pernah turun ke sana. Setiap tahun rasionya {{tahunan_min}}–{{tahunan_max}}× median nasional, rata-rata {{rata_papua}}% lebih mahal, dan bulan termurahnya pun masih {{terendah}}× ({{tgl_terendah}}).</p>
-  <figure>
-    {{fig2}}
-    <figcaption><b>Gambar 2.</b> Pita oranye menandai rentang yang ditempati kedua garis selama lima tahun. Garis vertikal menandai Januari 2024, ketika wilayah kedua provinsi menyusut karena pemekaran.</figcaption>
-  </figure>
-  <p>Selisih yang bertahan selama ini kecil kemungkinannya tertutup oleh operasi pasar sesekali, jadi penanganannya juga perlu rutin.</p>
+  <section class="bab">
+    <div class="rel">
+      <p class="label">Konflik</p>
+      <p class="angka">{{terendah}}×</p>
+      <p class="ket">bulan termurah Papua dan Papua Barat dalam lima tahun ({{tgl_terendah}})</p>
+    </div>
+    <div class="teks">
+      <h2>Selisihnya bertahan lima tahun</h2>
+      <p>Kalau mahalnya hanya sementara, misalnya karena gagal panen atau jalur kapal terganggu, rasio harga akan naik lalu turun lagi mendekati 1,0×. Papua dan Papua Barat, dua provinsi yang tercatat sejak 2021, tidak pernah turun ke sana. Setiap tahun rasionya {{tahunan_min}} sampai {{tahunan_max}}× median nasional, rata-rata {{rata_papua}}% lebih mahal, dan bulan termurahnya pun masih {{terendah}}× ({{tgl_terendah}}).</p>
+      <p>Selisih yang bertahan selama ini kecil kemungkinannya tertutup oleh operasi pasar sesekali, jadi penanganannya juga perlu rutin.</p>
+    </div>
+    <figure>
+      <div class="bingkai">{{fig2}}</div>
+      <img class="cadangan" src="img/fig2.png" alt="Grafik garis rasio harga bulanan Papua dan Papua Barat, Januari 2021 sampai Januari 2026. Kedua garis selalu berada di atas 1,1 kali median nasional." loading="lazy">
+      <figcaption><b>Gambar 2.</b> Pita hijau toska menandai rentang yang ditempati kedua garis selama lima tahun. Garis vertikal menandai Januari 2024, ketika wilayah kedua provinsi menyusut karena pemekaran.</figcaption>
+    </figure>
+  </section>
 
-  <p class="bagian">Resolusi</p>
-  <h2>Di dalam Tanah Papua, bebannya tidak merata</h2>
-  <p>Papua Pegunungan ({{pp}}×, atau {{pp_persen}}% di atas median) dan Papua Tengah ({{pt}}×) berada jauh di atas provinsi Papua lainnya. Selisih terbesar ada pada {{berat}}, yang di kedua provinsi itu {{berat_min}}–{{berat_max}}× harga nasional. Beras di Papua Selatan, sebaliknya, hampir setara harga nasional ({{beras_selatan}}×).</p>
-  <figure class="geser">
-    {{fig3}}
-    <figcaption><b>Gambar 3.</b> Angka di tiap sel adalah rasio terhadap median nasional, rata-rata 2024. Sel di bawah 1,0× diberi warna paling terang.</figcaption>
-  </figure>
+  <section class="bab">
+    <div class="rel">
+      <p class="label">Resolusi</p>
+      <p class="angka">{{pp}}×</p>
+      <p class="ket">Papua Pegunungan, provinsi termahal tahun 2024</p>
+    </div>
+    <div class="teks">
+      <h2>Di dalam Tanah Papua, bebannya tidak merata</h2>
+      <p>Papua Pegunungan ({{pp}}×, atau {{pp_persen}}% di atas median) dan Papua Tengah ({{pt}}×) berada jauh di atas provinsi Papua lainnya. Selisih terbesar ada pada {{berat}}, yang di kedua provinsi itu {{berat_min}} sampai {{berat_max}}× harga nasional. Beras di Papua Selatan, sebaliknya, hampir setara harga nasional ({{beras_selatan}}×).</p>
+    </div>
+    <figure class="geser">
+      <p class="petunjuk">Geser tabel ke samping untuk melihat semua komoditas.</p>
+      <div class="bingkai">{{fig3}}</div>
+      <img class="cadangan" src="img/fig3.png" alt="Heatmap enam provinsi Papua dan dua belas komoditas, tahun 2024. Baris Papua Pegunungan dan Papua Tengah paling gelap." loading="lazy">
+      <figcaption><b>Gambar 3.</b> Angka di tiap sel adalah rasio terhadap median nasional, rata-rata 2024. Sel di bawah 1,0× diberi warna paling terang.</figcaption>
+    </figure>
+  </section>
 
-  <h2>Data Papua Pegunungan berhenti pada {{bulan_terakhir_pp}}</h2>
-  <p>Kami ingin memakai data 2025 untuk melihat apakah keadaan di Papua Pegunungan membaik. Ternyata {{kosong_pp25}}% data provinsi itu untuk 2025 kosong, dan setelah {{bulan_terakhir_pp}} tidak ada catatan sama sekali. Dari harga yang tercatat, {{bulat_pp25}}% berupa kelipatan Rp500, sedangkan di provinsi lain hanya {{bulat_lain25}}%. Angka sebulat itu menandakan pengamatannya sangat sedikit. Karena itu kami memakai 2024 sebagai tahun pembanding dan tidak menafsirkan data 2025 Papua Pegunungan.</p>
-  <figure class="geser">
-    {{fig4}}
-    <figcaption><b>Gambar 4.</b> Tiap sel adalah satu provinsi pada satu bulan. Abu-abu tua berarti semua 12 komoditas tercatat; putih berarti tidak ada data.</figcaption>
-  </figure>
+  <section class="bab">
+    <div class="rel">
+      <p class="label">Catatan data</p>
+      <p class="angka">{{kosong_pp25}}%</p>
+      <p class="ket">data Papua Pegunungan tahun 2025 yang kosong</p>
+    </div>
+    <div class="teks">
+      <h2>Data Papua Pegunungan berhenti pada {{bulan_terakhir_pp}}</h2>
+      <p>Kami ingin memakai data 2025 untuk melihat apakah keadaan di Papua Pegunungan membaik. Ternyata {{kosong_pp25}}% data provinsi itu untuk 2025 kosong, dan setelah {{bulan_terakhir_pp}} tidak ada catatan sama sekali. Dari harga yang tercatat, {{bulat_pp25}}% berupa kelipatan Rp500, sedangkan di provinsi lain hanya {{bulat_lain25}}%. Angka sebulat itu menandakan pengamatannya sangat sedikit. Karena itu kami memakai 2024 sebagai tahun pembanding dan tidak menafsirkan data 2025 Papua Pegunungan.</p>
+    </div>
+    <figure class="geser">
+      <p class="petunjuk">Geser tabel ke samping untuk melihat semua bulan.</p>
+      <div class="bingkai">{{fig4}}</div>
+      <img class="cadangan" src="img/fig4.png" alt="Kisi kelengkapan data enam provinsi Papua per bulan sejak Januari 2024. Baris Papua Pegunungan kosong sejak Agustus 2025." loading="lazy">
+      <figcaption><b>Gambar 4.</b> Tiap sel adalah satu provinsi pada satu bulan. Abu-abu tua berarti semua 12 komoditas tercatat; putih berarti tidak ada data.</figcaption>
+    </figure>
+  </section>
+</div>
 
-  <p class="bagian">Usulan</p>
-  <h2>Yang kami usulkan</h2>
-  <div class="rekomendasi">
-    <ol>
-      <li>Prioritaskan alokasi Fasilitasi Distribusi Pangan ke Papua Pegunungan dan Papua Tengah, khususnya untuk {{berat}}. Karena selisihnya sudah bertahan lima tahun, program ini sebaiknya berjalan rutin sepanjang tahun.</li>
-      <li>Tambah titik pantau harga di Papua Pegunungan. Selama datanya bolong, dampak program apa pun di provinsi termahal tidak bisa diukur.</li>
-    </ol>
+<section class="usulan">
+  <div class="halaman isi-usulan">
+    <div class="bab">
+      <div class="rel"><p class="label">Usulan</p></div>
+      <div class="teks">
+        <h2>Yang kami usulkan</h2>
+        <ol>
+          <li><span>Prioritaskan alokasi Fasilitasi Distribusi Pangan ke Papua Pegunungan dan Papua Tengah, khususnya untuk {{berat}}. Karena selisihnya sudah bertahan lima tahun, program ini sebaiknya berjalan rutin sepanjang tahun.</span></li>
+          <li><span>Tambah titik pantau harga di Papua Pegunungan. Selama datanya bolong, dampak program apa pun di provinsi termahal tidak bisa diukur.</span></li>
+        </ol>
+      </div>
+    </div>
   </div>
+</section>
 
-  <h2>Sumber dan keterbatasan</h2>
-  <p class="kecil">Sumber: Badan Pangan Nasional, <i>Rata-rata Harga Pangan Bulanan Tingkat Konsumen Provinsi</i>, Januari 2021–Januari 2026, {{n_baris}} baris. <a href="{{sumber}}">{{sumber}}</a>, diunduh {{tgl_unduh}}. Semua angka dan gambar di halaman ini dihitung oleh notebook <code>analisis.ipynb</code> di repositori yang sama.</p>
-  <ul class="kecil">
-    <li>Data ini tidak menjelaskan penyebab selisih harga. Ongkos angkut dan akses jalan di pegunungan adalah dugaan yang masuk akal, tetapi tidak kami uji.</li>
-    <li>Angka provinsi adalah rata-rata, sehingga selisih antara kota dan kabupaten pedalaman di dalam satu provinsi tidak terlihat.</li>
-    <li>Sebelum 2024, "Papua" dan "Papua Barat" masih mencakup wilayah yang kini menjadi Papua Tengah, Papua Pegunungan, Papua Selatan, dan Papua Barat Daya. Akibatnya, garis di Gambar 2 sebelum dan sesudah Januari 2024 tidak mencakup wilayah yang persis sama.</li>
-    <li>Kode provinsi untuk Papua dan Papua Barat tertukar antarperiode di berkas sumber. Kami menggabungkan data berdasarkan nama provinsi.</li>
-    <li>Kami hanya memakai 12 dari 27 komoditas karena sisanya tidak tercatat lengkap selama lima tahun.</li>
-    <li>Median nasional adalah median 38 provinsi tanpa pembobotan jumlah penduduk.</li>
-    <li>Data Papua Pegunungan 2025 tidak lengkap dan tampak berasal dari sedikit pengamatan (lihat Gambar 4).</li>
-  </ul>
+<div class="halaman ekor">
+  <section class="bab catatan">
+    <div class="rel"><p class="label">Sumber</p></div>
+    <div class="teks">
+      <h2>Sumber dan keterbatasan</h2>
+      <p>Sumber: Badan Pangan Nasional, <i>Rata-rata Harga Pangan Bulanan Tingkat Konsumen Provinsi</i>, Januari 2021 sampai Januari 2026, {{n_baris}} baris. <a href="{{sumber}}">{{sumber}}</a>, diunduh {{tgl_unduh}}. Semua angka dan gambar di halaman ini dihitung oleh notebook <code>analisis.ipynb</code> di repositori yang sama.</p>
+      <ul>
+        <li>Data ini tidak menjelaskan penyebab selisih harga. Ongkos angkut dan akses jalan di pegunungan adalah dugaan yang masuk akal, tetapi tidak kami uji.</li>
+        <li>Angka provinsi adalah rata-rata, sehingga selisih antara kota dan kabupaten pedalaman di dalam satu provinsi tidak terlihat.</li>
+        <li>Sebelum 2024, "Papua" dan "Papua Barat" masih mencakup wilayah yang kini menjadi Papua Tengah, Papua Pegunungan, Papua Selatan, dan Papua Barat Daya. Akibatnya, garis di Gambar 2 sebelum dan sesudah Januari 2024 tidak mencakup wilayah yang persis sama.</li>
+        <li>Kode provinsi untuk Papua dan Papua Barat tertukar antarperiode di berkas sumber. Kami menggabungkan data berdasarkan nama provinsi.</li>
+        <li>Kami hanya memakai 12 dari 27 komoditas karena sisanya tidak tercatat lengkap selama lima tahun.</li>
+        <li>Median nasional adalah median 38 provinsi tanpa pembobotan jumlah penduduk.</li>
+        <li>Data Papua Pegunungan 2025 tidak lengkap dan tampak berasal dari sedikit pengamatan (lihat Gambar 4).</li>
+      </ul>
+    </div>
+  </section>
 
-  <h2>Gambar yang tidak kami pakai</h2>
-  <div class="dibuang">
-    {{fig_buang}}
-    <p class="kecil">Untuk pertanyaan "di mana", peta biasanya pilihan pertama, jadi kami membuatnya dulu. Hasilnya menyesatkan. Daratan Papua yang luas memenuhi tampilan, sehingga kesan "parah" lebih banyak datang dari luas wilayah daripada dari nilainya. Provinsi kecil seperti DKI Jakarta, DI Yogyakarta, dan Bali nyaris tidak terlihat. Peringkat juga sulit dibaca dari gradasi warna: Papua Barat ({{pb}}×) dan Papua ({{p}}×) tampak sama. Dot plot di Gambar 1 menjawab pertanyaan yang sama dengan posisi titik pada satu sumbu, yang bisa dibandingkan mata jauh lebih tepat daripada warna.</p>
-  </div>
+  <section class="bab catatan">
+    <div class="rel"><p class="label">Tidak dipakai</p></div>
+    <div class="teks">
+      <h2>Peta yang kami buang</h2>
+      <p>Untuk pertanyaan "di mana", peta biasanya pilihan pertama, jadi kami membuatnya dulu. Hasilnya menyesatkan. Daratan Papua yang luas memenuhi tampilan, sehingga kesan "parah" lebih banyak datang dari luas wilayah daripada dari nilainya. Provinsi kecil seperti DKI Jakarta, DI Yogyakarta, dan Bali nyaris tidak terlihat. Peringkat juga sulit dibaca dari gradasi warna: Papua Barat ({{pb}}×) dan Papua ({{p}}×) tampak sama. Dot plot di Gambar 1 menjawab pertanyaan yang sama dengan posisi titik pada satu sumbu, yang bisa dibandingkan mata jauh lebih tepat daripada warna.</p>
+    </div>
+    <figure class="lebar dibuang">
+      <div class="bingkai">{{fig_buang}}</div>
+      <img class="cadangan" src="img/fig_buang.png" alt="Peta choropleth 38 provinsi yang tidak dipakai. Daratan Papua yang luas mendominasi tampilan." loading="lazy">
+    </figure>
+  </section>
 
   <footer>Visualisasi Data Lanjut (CAK7AGB4) · Midterm Project · Magister Informatika, Telkom University</footer>
-</main>
+</div>
 </body>
 </html>

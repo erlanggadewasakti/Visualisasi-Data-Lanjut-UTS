@@ -28,8 +28,8 @@ def isi(cell, teks):
 
 identitas, brief, storyboard, sketsa = d.tables[:4]
 
-isi(identitas.rows[0].cells[1], "[Nama Anggota 1] ([NIM])")
-isi(identitas.rows[1].cells[1], "[Nama Anggota 2] ([NIM])")
+isi(identitas.rows[0].cells[1], "Erlangga Dewa Sakti (203012510035)")
+isi(identitas.rows[1].cells[1], "Alya Nabila Muliani (203012510013)")
 isi(identitas.rows[2].cells[1], "Selalu Lebih Mahal: Harga Pangan Pokok di Tanah Papua, 2021–2025")
 
 isi(brief.rows[0].cells[1],
@@ -72,7 +72,7 @@ baris = [
      "Dot plot horizontal 38 provinsi, diurutkan dari rasio tertinggi, dengan garis acuan 1,0× (median nasional). "
      "Yang dibandingkan adalah satu nilai antar 38 kategori. Titik lebih ringkas dari batang, dan yang dibaca "
      "adalah jarak dari garis 1,0×, jadi sumbu tidak perlu mulai dari nol.",
-     "Enam titik Papua berwarna oranye, 32 provinsi lain abu-abu. Anotasi pada lima titik teratas; label nilai hanya "
+     "Enam titik Papua berwarna hijau toska, 32 provinsi lain abu-abu. Anotasi pada lima titik teratas; label nilai hanya "
      "untuk provinsi Papua, nilai provinsi lain lewat hover."),
     ("Konflik",
      "Selama lima tahun harga di Papua tidak pernah mendekati median nasional.",

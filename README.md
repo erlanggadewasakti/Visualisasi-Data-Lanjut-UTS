@@ -1,7 +1,7 @@
 # Selalu Lebih Mahal: Harga Pangan Pokok di Tanah Papua, 2021–2025
 
 Midterm Project Visualisasi Data Lanjut (CAK7AGB4), Magister Informatika, Telkom University.
-[Nama Anggota 1 — NIM] · [Nama Anggota 2 — NIM]
+Erlangga Dewa Sakti (203012510035) · Alya Nabila Muliani (203012510013)
 
 > Pangan pokok di Tanah Papua konsisten sekitar 25% lebih mahal dari median nasional sejak 2021, dan di pegunungan selisihnya hampir 70%.
 
