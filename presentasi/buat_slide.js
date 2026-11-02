@@ -197,7 +197,7 @@ s.addText("Kesenjangan terbesar di pegunungan", { placeholder: "title" });
 angkaKunci(s, "1,67×", "Papua Pegunungan, provinsi termahal 2024");
 legenda(s, M, 1.9, [["skala", "", "1,0× sampai 2,0×: makin gelap makin mahal"], ["bingkai", THEME.colors.dk1, "Dua provinsi terberat"], ["bingkai-putus", THEME.colors.dk1, "Empat komoditas terberat"]]);
 gambar(s, "fig3.png", 1.57, 2.35, 10.2, 4.39, "Heatmap enam provinsi Papua dan dua belas komoditas, 2024: Papua Pegunungan dan Papua Tengah paling gelap, terutama cabai, bawang merah, dan minyak goreng");
-s.addNotes("Alya, ±55 detik.\n- Kalau dirinci, kesenjangannya tidak merata.\n- Bingkai tebal: Papua Pegunungan dan Papua Tengah jauh di atas provinsi Papua lain.\n- Garis putus: empat komoditas terberat, yaitu cabai rawit, bawang merah, cabai merah, minyak goreng; 1,63 sampai 2,01×.\n- Kontras: beras di Papua Selatan hampir setara harga nasional, 1,05×.\n- Ini menunjukkan di mana telaah lanjutan sebaiknya difokuskan: provinsi mana dan komoditas apa.");
+s.addNotes("Alya, ±55 detik.\n- Kalau dirinci, kesenjangannya tidak merata.\n- Bingkai tebal: Papua Pegunungan dan Papua Tengah jauh di atas provinsi Papua lain.\n- Garis putus: empat komoditas terberat, yaitu cabai rawit, bawang merah, cabai merah, minyak goreng; 1,63 sampai 2,01×.\n- Kontras: beras di Papua Selatan hampir setara harga nasional, 1,05×.\n- Ini menunjukkan di mana pemantauan sebaiknya difokuskan: provinsi mana dan komoditas apa.");
 
 s = pres.addSlide({ masterName: "GRAFIK", sectionTitle: "Cerita" });
 s.addText("Resolusi · Gambar 4", { placeholder: "label" });
@@ -254,8 +254,8 @@ s = pres.addSlide({ masterName: "PENUTUP", sectionTitle: "Usulan" });
 s.addText("Yang kami usulkan", { placeholder: "label" });
 s.addText("Dua usulan untuk pemantauan dan evaluasi", { placeholder: "title" });
 [
-  [{ text: "Jadikan Papua Pegunungan dan Papua Tengah prioritas telaah lebih lanjut", options: { bold: true } },
-   { text: ", khususnya bawang, cabai, dan minyak goreng, dalam pemantauan dan evaluasi program stabilisasi harga." }],
+  [{ text: "Jadikan Papua Pegunungan dan Papua Tengah prioritas", options: { bold: true } },
+   { text: " dalam pemantauan dan evaluasi program stabilisasi harga, khususnya cabai rawit merah, bawang merah, cabai merah, dan minyak goreng." }],
   [{ text: "Evaluasi dan perkuat cakupan pencatatan harga di Papua Pegunungan", options: { bold: true } },
    { text: ": 62% data 2025 kosong, jadi kualitas datanya perlu diperbaiki sebelum dipakai untuk keputusan operasional." }],
 ].forEach((isi, i) => {
@@ -265,7 +265,7 @@ s.addText("Dua usulan untuk pemantauan dan evaluasi", { placeholder: "title" });
 });
 teks(s, "Pada 2024, lima provinsi termahal seluruhnya berada di Tanah Papua; Papua dan Papua Barat tetap sekitar 19–34% di atas median nasional setiap tahun sejak 2021.",
   { x: M, y: 5.95, w: 12.1, h: 0.75, fontSize: 17, italic: true, color: C.accent4 });
-s.addNotes("Alya, ±35 detik, lalu tanya jawab.\n- Usulan 1: Papua Pegunungan dan Papua Tengah paling tinggi, terutama empat komoditas terberat, jadi layak jadi prioritas telaah. Data harga saja belum cukup untuk menentukan bentuk intervensinya.\n- Usulan 2: 62% data Papua Pegunungan 2025 kosong. Cakupan pencatatan perlu dievaluasi dan diperkuat sebelum datanya dipakai untuk keputusan operasional yang lebih spesifik.\n- Tutup dengan membaca ulang pesan utama di bawah, lalu: \"Terima kasih, kami siap menjawab pertanyaan.\"");
+s.addNotes("Alya, ±35 detik, lalu tanya jawab.\n- Usulan 1: Papua Pegunungan dan Papua Tengah paling tinggi, terutama empat komoditas terberat, jadi layak jadi prioritas pemantauan dan evaluasi. Data harga saja belum cukup untuk menentukan bentuk intervensinya.\n- Usulan 2: 62% data Papua Pegunungan 2025 kosong. Cakupan pencatatan perlu dievaluasi dan diperkuat sebelum datanya dipakai untuk keputusan operasional yang lebih spesifik.\n- Tutup dengan membaca ulang pesan utama di bawah, lalu: \"Terima kasih, kami siap menjawab pertanyaan.\"");
 
 pres.addSection({ title: "Cadangan" });
 s = pres.addSlide({ masterName: "CADANGAN", sectionTitle: "Cadangan" });
